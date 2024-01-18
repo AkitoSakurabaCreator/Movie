@@ -1,0 +1,76 @@
+{% extends "accounts/base.html" %}
+{% load static %}
+
+{% block content %}
+
+<div class="profile_container">
+    <div class="profile_group">
+        {% if Switch %}
+        <div class="" role="alert">
+            <p>注文確定するにはプロフィール入力してください。</p>
+        </div>
+        {% endif %}
+        <h2 class="">プロフィール</h5>
+        <table class="profile_table">
+            <tbody>
+                <tr class="profile_image_box">
+                    <th class="profile_left">プロフィール画像</th>
+                    <td class="data profile_image" id="avatar_box"><img src="{{ user_data.avatar.url }}" id="avatarimage"></td>
+                </tr>
+                <tr>
+                    <th class="profile_left">名前</th>
+                    <td class="data">{{ user_data.first_name }}{{ user_data.last_name }}</td>
+                </tr>
+                <tr>
+                    <th class="profile_left">ニックネーム(任意)</th>
+                    <td class="data">{{ user_data.nick_name }}</td>
+                </tr>
+                <tr>
+                    <th class="profile_left">ユーザーID</th>
+                    <td class="data">@{{ user_data.user_screen_id }}</td>
+                </tr>
+                <tr>
+                    <th class="profile_left">生年月日</th>
+                    <td class="data">{{ user_data.year}}</td>
+                </tr>
+                <tr>
+                    <th class="profile_left">メールアドレス</th>
+                    <td class="data">{{ user_data.email}}</td>
+                </tr>
+                <tr>
+                    <th class="profile_left">郵便番号</th>
+                    <td class="data">{{ user_data.zipcode}}</td>
+                </tr>
+                <tr>
+                    <th class="profile_left">住所</th>
+                    <td class="data">{{ user_data.address}}</td>
+                </tr>
+                <tr>
+                    <th class="profile_left">建物名</th>
+                    <td class="data">{{ user_data.buildingname}}</td>
+                </tr>
+                <tr>
+                    <th class="profile_left">電話番号</th>
+                    <td class="data">{{ user_data.tel}}</td>
+                </tr>
+                <tr>
+                    <th class="profile_left">職業</th>
+                    <td class="data">{{ user_data.job}}</td>
+                </tr>
+                <tr>
+                    <th class="profile_left">入会日</th>
+                    <td class="data">{{ user_data.created}}</td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="profile_button_area">
+        <div class="">
+            <button class="to_edit_btn"><a href="{% url 'profile_edit' %}" class="">編集する</a></button>
+        </div>
+        <div class="">
+            <button class="to_delete_btn" onclick="location.href='{% url 'profile_check' %}'">削除する</button>
+        </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

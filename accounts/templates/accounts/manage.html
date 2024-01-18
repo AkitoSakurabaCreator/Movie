@@ -1,0 +1,43 @@
+{% extends 'app/base.html' %}
+{% block title %}マイページ{% endblock %}
+{% block content %}
+<div class="MyPageManagement">
+    <div class="title_box">
+        <h1>アカウント管理</h1>
+        <p>様々な機能があります。</p>
+    </div>
+    <ul>
+
+        <li>
+            <a href="{% url 'profile' %}">
+                <h2>ログインとセキュリティ</h2>
+                <p>アカウント情報の変更</p>
+            </a>
+        </li>
+        <li>
+            <a href="{% url 'password_change' %}">
+                <h2>パスワード変更</h2>
+                <p>登録情報の変更・追加</p>
+            </a>
+        </li>
+        <li>
+            <a href="{% url 'Inquiry' %}">
+                <h2>お問い合わせ</h2>
+                <p>お問い合わせ内容を送信</p>
+            </a>
+        </li>
+        <li>
+            <a href="{% url 'review_list' %}">
+                <h2>レビュー編集</h2>
+                <p>過去のレビューを編集</p>
+            </a>
+        </li>
+        <li>
+            <a href="{% url 'account_logout' %}">
+                <h2>ログアウト</h2>
+                <p>ログアウトします。</p>
+            </a>
+        </li>
+    </ul>
+</div>
+{% endblock %}

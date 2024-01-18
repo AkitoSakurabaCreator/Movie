@@ -1,0 +1,203 @@
+{% extends "app/base.html" %}
+{% load static %}
+{% load humanize %}
+
+{% block content %}    
+<div class="search_result">
+    <h1>{{ genreName }}</h1>
+    <div class="scroll" style="width: 100%; flex-wrap: wrap;">
+        {% for result in feature %}
+            <div class="reviewers">
+                <div class="review_detail">
+                    <img class="clickDetail" id="{{ result.id }}" src="https://image.tmdb.org/t/p/w300_and_h450_bestv2{{ result.poster_path }}" alt="">
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+
+<div id="easyModal" class="modal_custom">
+    <div class="modal-content">
+        <div class="modal-header">
+            <img class="modalClose" src="{% static 'images/modalClose.svg' %}" alt="modalClose SVG" />
+            <img class="movieBackground" src="" alt="映画背景画像" />
+            <img class="moviePoster" src="" alt="映画ポスター" />
+        </div>
+        <div class="modal-body">
+            <h1 class="modal_title"></h1>
+            
+            <ul class="genre_list genreList"></ul>
+            
+            <div class="flexContainer">
+                <p class="modal_date"></p>
+                <ul class="languageList"></ul>
+            </div>
+
+            <div class="reviewContainer flexContainer">
+                <p class="modal_review"></p>
+                <div class="starContainer">
+                    <ul class="backReviewStars">
+                        <li><svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="Star border" clip-path="url(#clip0_335_673)"> <path id="Vector" class="star" d="M33 13.86L22.215 12.93L18 3L13.785 12.945L3 13.86L11.19 20.955L8.73 31.5L18 25.905L27.27 31.5L24.825 20.955L33 13.86ZM18 23.1L12.36 26.505L13.86 20.085L8.88 15.765L15.45 15.195L18 9.15L20.565 15.21L27.135 15.78L22.155 20.1L23.655 26.52L18 23.1Z" fill="gray"/></g><defs><clipPath id="clip0_335_673"><rect width="36" height="36" fill="gray"/></clipPath></defs></svg></li>
+                        <li><svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="Star border" clip-path="url(#clip0_335_673)"> <path id="Vector" class="star" d="M33 13.86L22.215 12.93L18 3L13.785 12.945L3 13.86L11.19 20.955L8.73 31.5L18 25.905L27.27 31.5L24.825 20.955L33 13.86ZM18 23.1L12.36 26.505L13.86 20.085L8.88 15.765L15.45 15.195L18 9.15L20.565 15.21L27.135 15.78L22.155 20.1L23.655 26.52L18 23.1Z" fill="gray"/></g><defs><clipPath id="clip0_335_673"><rect width="36" height="36" fill="gray"/></clipPath></defs></svg></li>
+                        <li><svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="Star border" clip-path="url(#clip0_335_673)"> <path id="Vector" class="star" d="M33 13.86L22.215 12.93L18 3L13.785 12.945L3 13.86L11.19 20.955L8.73 31.5L18 25.905L27.27 31.5L24.825 20.955L33 13.86ZM18 23.1L12.36 26.505L13.86 20.085L8.88 15.765L15.45 15.195L18 9.15L20.565 15.21L27.135 15.78L22.155 20.1L23.655 26.52L18 23.1Z" fill="gray"/></g><defs><clipPath id="clip0_335_673"><rect width="36" height="36" fill="gray"/></clipPath></defs></svg></li>
+                        <li><svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="Star border" clip-path="url(#clip0_335_673)"> <path id="Vector" class="star" d="M33 13.86L22.215 12.93L18 3L13.785 12.945L3 13.86L11.19 20.955L8.73 31.5L18 25.905L27.27 31.5L24.825 20.955L33 13.86ZM18 23.1L12.36 26.505L13.86 20.085L8.88 15.765L15.45 15.195L18 9.15L20.565 15.21L27.135 15.78L22.155 20.1L23.655 26.52L18 23.1Z" fill="gray"/></g><defs><clipPath id="clip0_335_673"><rect width="36" height="36" fill="gray"/></clipPath></defs></svg></li>
+                        <li><svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="Star border" clip-path="url(#clip0_335_673)"> <path id="Vector" class="star" d="M33 13.86L22.215 12.93L18 3L13.785 12.945L3 13.86L11.19 20.955L8.73 31.5L18 25.905L27.27 31.5L24.825 20.955L33 13.86ZM18 23.1L12.36 26.505L13.86 20.085L8.88 15.765L15.45 15.195L18 9.15L20.565 15.21L27.135 15.78L22.155 20.1L23.655 26.52L18 23.1Z" fill="gray"/></g><defs><clipPath id="clip0_335_673"><rect width="36" height="36" fill="gray"/></clipPath></defs></svg></li>
+                    </ul>
+                    <ul class="reviewStars"></ul>               
+                </div>
+            </div>
+
+            <div class="modal_function">
+                <a class="review_post flexColContainer" id="reviewButton" href="">
+                    <img src="{% static 'images/rateReview.svg' %}" alt="review link">レビュー投稿
+                </a>
+                <button id ="mylist" class="myListButton flexColContainer" type="submit">
+                    <img src="{% static 'images/myList.svg' %}" alt="mylist add link">マイリスト登録
+                </button>
+                <button id="copyClipboard" class="flexColContainer" type="button">
+                    <img src="{% static 'images/copyLink.svg' %}" alt="copy clipboard link">リンクをコピー
+                </button>
+            </div>
+
+            <div class="video">
+            </div>
+
+            <div class="overviewContainer">
+                <p>あらすじ</p>
+                <p class="overview"></p>
+            </div>
+            
+            <div class="moreDetailContainer flexColContainer">
+                <div class="tabChanger">
+                    <button id="detail" class="tabButton tabSelected">詳細</button>
+                    <button id="reviewPost" class="tabButton">レビュー</button>
+                </div>
+                <div id="detailTab" class="tabContent tabActive">
+                    <h3 class="cast">キャスト・スタッフ</h3>
+                    <div class="cast_list"></div>
+                </div>
+                <div id="reviewTab" class="tabContent">
+                    <ul class="reviewList"></ul>
+                    <button id="review" type="submit">続きを見る&nbsp;&#9660;</button>
+                </div>
+            </div>
+            
+            <div class="similar swiper">
+                <ul class="similar_list swiper-wrapper">
+                    <li class="swiper-slide similarMovie"></li>
+                </ul>
+                <div class="swiper-pagination"></div>
+                <div class="swiper-button-prev"></div>
+                <div class="swiper-button-next"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    $(function() {
+        let count = 2;
+        let loopSw = true;
+        const div = document.querySelector(".scroll");
+        $(window).on('scroll', function(){
+            var docHeight = $(document).innerHeight(), //ドキュメントの高さ
+                windowHeight = $(window).innerHeight(), //ウィンドウの高さ
+                pageBottom = docHeight - windowHeight - 600; //ドキュメントの高さ - ウィンドウの高さ
+                
+                if(pageBottom <= $(window).scrollTop()) {
+                    if (loopSw == true){
+                        loopSw = false;
+                    $.ajax({
+                        'url': '{% url "genreScroll" %}',
+                        'type': 'GET',
+                        'data': {
+                            'page': count,
+                            'genreid': {{ genre_id }}
+                        },
+                        'dataType': 'json'
+                    }).done(function(response) {                    
+                        for (const genre of response.genres) {
+                            
+                            var newElement = document.createElement("div");
+                            var newElement2 = document.createElement("div");
+                            var newElement4 = document.createElement("img");
+                        
+                            newElement.setAttribute("class", "reviewers");
+                            newElement2.setAttribute("class", "review_detail");
+                            newElement4.src = ("https://image.tmdb.org/t/p/w300_and_h450_bestv2" + genre.poster_path);
+                            newElement4.setAttribute("class", "clickDetail")
+                            newElement4.setAttribute("id", genre.id)
+                            newElement4.addEventListener("click", function (e) {
+                                setttings(this.id);
+                            });
+                            newElement2.appendChild(newElement4);
+                            newElement.appendChild(newElement2);
+                            div.appendChild(newElement);
+                        }
+                        
+                        count++;
+                    }).fail(function () {
+                        alert('ページの取得に失敗しました。');
+                    });
+            }
+        });
+    });
+</script>
+
+<script>
+    $(function() {
+        let count = 2;
+        let loopSw = true;
+        const div = document.querySelector(".scroll");
+        $(window).on('scroll', function(){
+            var docHeight = $(document).innerHeight(), //ドキュメントの高さ
+                windowHeight = $(window).innerHeight(), //ウィンドウの高さ
+                pageBottom = docHeight - windowHeight -80; //ドキュメントの高さ - ウィンドウの高さ
+                
+                if(pageBottom <= $(window).scrollTop()) {
+                    if (loopSw == true){
+                        loopSw = false;
+
+                        $.ajax({
+                            'url': '{% url "genreScroll" %}',
+                            'type': 'GET',
+                            'data': {
+                                'page': count,
+                                'genre_id': {{ genre_id }}
+                            },
+                            'dataType': 'json'
+                        }).done(function(response) {                    
+                            for (const genre of response.genres) {
+                                
+                                var newElement = document.createElement("div");
+                                var newElement2 = document.createElement("div");
+                                //var newElement3 = document.createElement("a");
+                                var newElement4 = document.createElement("img");
+                            
+                                newElement.setAttribute("class", "reviewers");
+                                newElement2.setAttribute("class", "review_detail");
+                                newElement4.src = ("https://image.tmdb.org/t/p/w300_and_h450_bestv2" + genre.poster_path);
+                                newElement4.setAttribute("class", "clickDetail")
+                                newElement4.setAttribute("id", genre.id)
+                                newElement4.addEventListener("click", function (e) {
+                                    setttings(this.id);
+                                });
+                                
+                                newElement2.appendChild(newElement4);
+                                newElement.appendChild(newElement2);
+                                div.appendChild(newElement);
+                            }
+                            count++;
+                            loopSw = true;
+                        }).fail(function () {
+                            alert('ページの取得に失敗しました。');
+                            loopSw = true;
+                        });
+                }
+            }
+        });
+    });
+    
+</script>
+{% endblock %}

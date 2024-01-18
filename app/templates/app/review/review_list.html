@@ -1,0 +1,74 @@
+{% extends "app/base.html" %}
+{% load static %}
+{% load humanize %}
+{% block content %}
+    
+<section class="ordersection_list">
+    <div class="title_box_list">
+        <h1>レビュー一覧</h1>
+        <p>過去にレビュー投稿した一覧を見ることができます。</p>
+    </div>
+    {% if Reviews %}
+        <div class="container_list">
+        {% for review in Reviews %}
+            <div class="reviewers_list">
+                <div class="review_detail_list">
+                    {% for movie in movies %}
+                        {% if movie.movie_id == review.movie_id %}
+                            <img src="https://image.tmdb.org/t/p/w300_and_h450_bestv2{{ movie.poster_path }}" alt="">
+                            <img src="https://image.tmdb.org/t/p/w300_and_h450_bestv2{{ movie.backdrop_path }}" alt="">
+                            <h3>{{ review.title }}</h3>
+                            <p>{{ review.content }}</p>
+                            <div class="rate">
+                                {% for file_id in ""|rjust:review.like %}
+                                <label id ="star">★</label>
+                                {% endfor %}
+                            </div>
+                            <p>更新日: {{ review.updated }}</p>
+                        {% endif %}
+                    {% endfor %}
+                    <div id="product_detail_box" class="review_edit">
+                        <a href="{% url 'review_edit' review.id %}" class="btn btn-info"><i class="fas fa-comments"></i>レビュー編集</a>
+                        <a href="{% url 'review_delete' review.id %}" class="btn btn-danger"><i class="fas fa-trash"></i>レビュー削除</a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+        </div>
+        <div class="paginator">
+            <nav class="pagination is-centered" role="navigation" aria-label="pagination">
+                {% if .has_previous %}
+                <a class="pagination-previous" href="?p={{ Reviews.previous_page_number }}">前のページへ</a>
+                {% endif %}
+                {% if Reviews.has_next %}
+                <a class="pagination-next" href="?p={{ Reviews.next_page_number }}">次のページへ</a>
+                {% endif %}
+                <ul class="pagination-list">
+                    {% if Reviews.has_previous %}
+                        {% if Reviews.previous_page_number != 1 %}
+                        <li><a class="pagination-link" href="?p=1">1</a></li>
+                        <li><span class="pagination-ellipsis">&hellip;</span></li>
+                        {% endif %}
+                        <li><a class="pagination-link"
+                                href="?p={{ Reviews.previous_page_number }}">{{ Reviews.previous_page_number }}</a></li>
+                    {% endif %}
+                        <li><a class="pagination-link is-current" href="?p={{ Reviews.number }}">{{ FashionReviews.number }}</a></li>
+                        {% if Reviews.has_next %}
+                            <li><a class="pagination-link"
+                                    href="?p={{ Reviews.next_page_number }}">{{ Reviews.next_page_number }}</a></li>
+                            {% if Reviews.next_page_number != Reviews.paginator.num_pages %}
+                                <li><span class="pagination-ellipsis">&hellip;</span></li>
+                                <li><a class="pagination-link"
+                                        href="?p={{ Reviews.paginator.num_pages }}">{{ Reviews.paginator.num_pages }}</a></li>
+                            {% endif %}
+                    {% endif %}
+                </ul>
+            </nav>
+        </div>
+    {% else %}
+        <h2>投稿したレビューが見つかりません。</h2>
+    {% endif %}
+</section>
+
+
+{% endblock %}

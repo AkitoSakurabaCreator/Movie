@@ -1,0 +1,16 @@
+{% extends "accounts/base.html" %}
+
+{% block content %}
+<div class="logout_container">
+    <div class="logout_group">
+        <p class="logout_text">ログアウトしますか?</p>
+        <form method="POST" class="logout_area">
+            {% csrf_token %}
+            <div class="logoutbtn_area">
+                <button class="logoutbtn" type="submit">ログアウト</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+{% endblock%}

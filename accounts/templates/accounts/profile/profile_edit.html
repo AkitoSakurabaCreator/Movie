@@ -1,0 +1,99 @@
+{% extends "accounts/base.html" %}
+{% load widget_tweaks %}
+{% block content %}
+
+    <div class="profile_edit_container">
+        <div class="profile_edit_group">
+            <h2 class="profile_edit_text">プロフィール</h2>
+            {% comment %} <ul>
+                {% for error in form.non_field_errors %}
+                <li>{{ error }}</li>
+                {% endfor %}
+            </ul> {% endcomment %}
+            {% if errors %}
+            <ul class="">
+                <li style="">
+                    <ul class="">{% for error in errors %}
+                        <li>{{ error }}</li>
+                    </ul>
+                </li>
+            </ul>
+            {% endfor %}
+
+            {% endif %}
+            <form method="POST" class="profile_edit_form" enctype="multipart/form-data">
+                {% csrf_token %}
+                <tbody class="">
+                    <div class="profile_image_area">
+                        <h3 class="profile_data">プロフィール画像</h3>
+                        <td class="">
+                            {% render_field form.avatar class='form-control-image' placeholder='プロフィール画像' %}
+                        </td>
+                    </div>
+                    <tr>
+                        <h3 class="profile_data">名前</h3>
+                        <div class="name_form">
+                            {% render_field form.first_name class='form-control-name' placeholder='姓' %}
+                            {% render_field form.last_name class='form-control-name' placeholder='名' %}
+                        </div>
+                    </tr>
+                    <tr>
+                        <h3 class="profile_data">ニックネーム(任意)</h3>
+                        <td class="">
+                            {% render_field form.nick_name class='form-control' placeholder='ニックネーム' %}
+                        </td>
+                    </tr>
+                    <tr>
+                        <h3 class="profile_data">ユーザーID</h3>
+                        <td class="">
+                            {% render_field form.user_screen_id class='form-control' placeholder='ユーザID' %}
+                        </td>
+                    </tr>
+                    <tr>
+                        <h3 class="profile_data">生年月日</h3>
+                        <td class="">
+                            {{ form.media }}
+                            {% render_field form.year class='form-control' placeholder='生年月日' %}
+                        </td>
+                    </tr>
+                    <tr>
+                        
+                        <h3 class="profile_data">郵便番号</h3>
+                            <td class="">
+                                {% render_field form.zipcode class='form-control' placeholder='郵便番号 記入例: 0123456' %}
+                            </td>
+                    </tr>
+                    <tr>
+                        <h3 class="profile_data">住所</h3>
+                        <td class="">
+                            {% render_field form.address class='form-control p-region p-locality p-street-address p-extended-address' placeholder='住所' %}
+                        </td>
+                    </tr>
+                    <tr>
+                        <h3 class="profile_data">建物名(任意)</h3>
+                        <td class="">
+                            {% render_field form.buildingname class='form-control' placeholder='建物名' %}
+                        </td>
+                    </tr>
+                    <tr>
+                        <h3 class="profile_data">電話番号</h3>
+                        <td class="">
+                            {% render_field form.tel class='form-control' placeholder='電話番号' %}
+                        </td>
+                    </tr>
+                    <tr>
+                        <h3 class="profile_data">職業(任意)</h3>
+                        <td class="">
+                            {% render_field form.job class='form-control' placeholder='職業' %}
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="edit_btn_area">
+                <button class="edit_btn" type="submit">登録する</button>
+            </div>
+            </form>
+        </div>
+        
+    </div>
+{% endblock %}

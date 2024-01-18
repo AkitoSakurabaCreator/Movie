@@ -1,0 +1,47 @@
+{% extends "accounts/base.html" %}
+{% load widget_tweaks %}
+{% block title %}アカウント登録{% endblock %}
+
+{% block content %}
+    <div class="container" id="account_body_area">
+        <div class="" id="account_area">
+            <h2 class="signup_title">アカウント登録</h2>
+            <form method="POST" class="form_signup_area">
+                {% csrf_token %}
+                <div class="name_field" id="signup_field_name">
+                    {% render_field form.first_name class="form_signup_firstname" placeholder="姓" %}
+                    {% render_field form.last_name class="form_signup_lastname" placeholder="名" %}
+                </div>
+                <div class="form_signup">
+                    {% render_field form.email class="form_input" placeholder="メールアドレス" %}
+                </div>
+                <div class="form_signup">
+                    {% render_field form.password1 class="form_input" placeholder="パスワード" %}
+                </div>
+                <div class="form_signup">
+                    {% render_field form.password2 class="form_input" placeholder="パスワード(確認)" %}
+                </div>
+                <div class="">
+                    <div class="kiyaku_container">
+                        <label class="kiyaku">
+                            {% render_field form.read_terms value="1" %}
+                            <a href="{% url 'terms' %}">利用規約</a>に同意します
+                        </label>
+                    </div>
+                </div>
+                {% if form.errors %}
+                <ul class="">
+                    {% for error in form.password1.errors %}
+                    <li>{{ error }}</li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+
+                <div class="Registerbutton_area">
+                    <button class="Register_button" type="submit">登録</button>
+                </div>
+                {% comment %} {% render_field field class="form-control is-invalid" %} {% endcomment %}
+            </form>
+        </div>
+    </div>
+{% endblock %}

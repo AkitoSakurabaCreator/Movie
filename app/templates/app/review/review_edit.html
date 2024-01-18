@@ -1,0 +1,70 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% load humanize %}
+{% load widget_tweaks %}
+{% block content %}
+<div class="reviewPostContainer">
+    <div class="review_post review_border">
+        <img src="https://image.tmdb.org/t/p/original{{ movie.poster_path }}" alt="" class="item_image" />
+        <div class="movieInfo">
+            <p class="itemTitle">{{ movie.title }}</p>
+            <div class="movieInfoItem">
+                <p>ジャンル</p>
+                <ul class="genreList">
+                    {% for genre in movie.genres %}
+                    <li>{{ genre.name }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <div class="movieInfoItem">
+                <p>公開日</p>
+                <p class="itemReleaseDate">{{ movie.release_date }}</p>
+            </div>
+            <div class="movieInfoItem">
+                <p>対応言語</p>
+                <ul class="languageList">
+                    {% for language in movie.spoken_languages %}
+                    <li>{{ language.name }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+        <div class="reviewItem">
+            <form action="" method="post">
+                {% csrf_token %}
+                <div class="rate-form">
+                    <p>総合評価</p>
+                    <input id="star1" type="radio" name="rate" value="1">
+                    <label for="star1">★</label>
+                    <input id="star2" type="radio" name="rate" value="2">
+                    <label for="star2">★</label>
+                    <input id="star3" type="radio" name="rate" value="3" checked>
+                    <label for="star3">★</label>
+                    <input id="star4" type="radio" name="rate" value="4">
+                    <label for="star4">★</label>
+                    <input id="star5" type="radio" name="rate" value="5">
+                    <label for="star5">★</label>
+                </div>
+                
+                <div class="reviewTitle">
+                    <label for="review_title" class="form-label">レビュータイトル</label>
+                    <div id="inputTitleWrap" data-length="0/30">{% render_field form.title class="form-control" id="review_title" placeholder="レビュータイトル" %}</div>
+                </div>
+                <div class="reviewContent">
+                    <label for="review_content" class="form-label">レビュー本文</label>
+                    <div id="inputContentWrap" data-length="0/320,000">{% render_field form.content class="form-control" id="review_content" placeholder="レビュー本文" %}</div>
+                </div>
+                <div class="reviewSpoiler">
+                    <label for="review_spoiler" class="form-label">ネタバレを含む</label>
+                    {% render_field form.spoiler class="form-control" id="review_spoiler" %}
+                </div>
+                <div class="reviewPublish">
+                    <label for="review_publish" class="form-label">公開する</label>
+                    {% render_field form.publish class="form-control" id="review_publish" %}
+                </div>
+                <button class="reviewPostButton" type="submit">投稿する</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock%}

@@ -1,0 +1,44 @@
+{% extends "accounts/base.html" %}
+{% load widget_tweaks %}
+{% block title %}ログイン{% endblock %}
+
+{% block content%}
+
+<div class="login__container" id="account_body_area">
+    <div class="loginform_area" id="account_area">
+        <!-- <h5 class="login_title">ログイン</h5> -->
+        <form method="POST" class="form_login">
+            {% csrf_token %}
+            {% if form.non_field_errors %}
+            <div class="" role="alert">
+                {% for error in form.non_field_errors %}
+                <p{% if forloop.last %} class="mb-0"{% endif %}>{{ error }}</p>
+                {% endfor %}
+            </div>
+            {% endif %}
+            <div class="loginForm">
+                <h2 class="login_text">ユーザー名</h2>
+                {% render_field form.login class="form-login" placeholder="" %}
+            </div>
+            <div class="loginForm2">
+                <h2  class="login_text">パスワード</h2>
+                {% render_field form.password class="form-login" placeholder="" %}
+            </div>
+            <div class="login_area">
+                <button class="loginbtn" type="submit">ログイン</button>
+            </div>
+        </form>
+        
+        <div class="reset_area">
+            <small>
+                <a href="{% url 'password_reset' %}" class="">パスワードを忘れた方はこちら</a>
+            </small>
+        </div>
+        <div class="signup_area">
+            <small>
+                <a href="{% url 'account_signup' %}" class="">登録済みではない方はこちら</a>
+            </small>
+        </div>
+    </div>
+</div>
+{% endblock %}

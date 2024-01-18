@@ -1,0 +1,1586 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Sawarabi Mincho', serif;
+    background-color: #000a17;
+    color: #fff;
+}
+
+*::-webkit-scrollbar {
+    width: 10px;
+    border-radius: 8px;
+}
+
+*::-webkit-scrollbar-track {
+    /* background-color: transparent; */
+    background-color: #232d3a;
+}
+
+*::-webkit-scrollbar-thumb {
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 8px;
+}
+
+body {
+    background-color: #f1f1f1;
+    display: flex;
+    flex-flow: column;
+    /* width: 100%; */
+    min-height: 100vh;
+}
+
+h1 {
+    margin: 0;
+}
+
+main {
+    width: 100%;
+    margin-top: 0;
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+}
+
+.container {
+    width:100%;
+    padding-left: 256px;
+}
+
+#avatar_box {
+    overflow: hidden;
+    position: relative;
+    width: 250px;
+    height: 250px;
+}
+
+#avatarimage {
+    object-fit: cover;
+    object-position: center;
+    /* 横幅と高さを同じにする */
+    width: 250px;
+    height: 250px;
+    /* 真円にする */
+    border-radius: 50%;
+}
+
+header{
+    width: 100%;
+    height: 72px;
+    position: fixed;
+    z-index: 10;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #232D3A;
+}
+
+.navTop {
+    width: fit-content;
+    height: 100%;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    gap: 1.5rem;
+    background-color: #232D3A;
+}
+
+.navTop h1 {
+    background-color: #232D3A;
+    width: 100%;
+}
+
+.sidebarMenu{
+    width: 72px;
+    height: 72px;
+    display: grid;
+    place-items: center;
+    background-color: #303D4F;
+    cursor: pointer;
+}
+
+.sidebarMenu svg{
+    background-color: #303D4F;
+}
+
+.navFunction {
+    width: fit-content;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    gap: 1.5rem;
+    padding-right: 1.5rem;
+    background-color: #232D3A;
+}
+
+/* 検索フォーム */
+.navFunction .search_formarea {
+    width: 100%;
+    height: 40px;
+    border-radius: 10px;
+    background-color: #232D3A;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+}
+
+.navFunction .search_formarea .search_form {
+    width: 576px;
+    height: 100%;
+    padding: 0 0.75rem;
+    color: #000a17;
+    background-color: #ffffff;
+    border-radius: 10px 0 0 10px;
+    border: none;
+}
+.search_form:focus {
+    outline: solid 1px #0080DE;
+}
+
+.search_form::placeholder {
+    font-size: 1rem;
+}
+
+.navFunction .search_formarea button {
+    width: 40px;
+    height: 40px;
+    border-radius: 0 10px 10px 0;
+    border: none;
+    background-color: #303D4F;
+}
+
+.fa-magnifying-glass {
+    font-size: 1rem;
+    cursor: pointer;
+    background-color: #303D4F;
+}
+
+/* サインインボタン */
+.signin_link {
+    width: 100%;
+    display: grid;
+    place-items: center;
+    height: 2.5rem;
+    font-size: 1rem;
+    font-weight: bold;
+    text-decoration: none;
+    background-color: #232d3a
+}
+/* login user */
+.login_user {
+
+}
+.login_user svg {
+    background: none;
+}
+
+.paginator {
+    width: 100%;
+    padding: 6px;
+    display: block;
+    text-align: center;
+}
+
+.pagination {
+    width: 96%;
+    display: flex;
+    /* background-color: #232d3a; */
+    border-radius: 8px;
+    padding: 6px;
+}
+
+.pagination.is-centered *:not(.pagination-link) {
+    background-color: transparent;
+}
+
+.pagination-next {
+    text-decoration: none;
+    font-size: 20px;
+}
+
+.pagination-list {
+    display: flex;
+}
+
+.pagination-list li {
+    list-style: none;
+}
+
+.pagination-link {
+    text-decoration: none;
+    font-size: 20px;
+    padding: 0.25rem 0.75rem;
+    border-radius: 4px;
+    background-color: #232D3A;
+}
+
+.pagination-link.is-current {
+    background-color: transparent;
+}
+
+.pagination-ellipsis {
+    background-color: #232d3a;
+}
+footer {
+    display: grid;
+    place-content: center;
+    height: 56px;
+    background-color: #232D3A;
+}
+
+.footer p {
+    background-color: #232D3A;
+    font-size: 1.25rem;
+}
+
+#page_top {
+    width: 50px;
+    height: 50px;
+    position: fixed;
+    right: -50px;
+    bottom: 80px;
+    background: rgba(14, 14, 14, 0.912);
+    opacity: 0.6;
+    border-radius: 50%;
+    z-index: 50;
+}
+
+#page_top a {
+    position: relative;
+    display: block;
+    width: 50px;
+    height: 35px;
+    text-decoration: none;
+}
+
+#page_top a::before {
+    font-family: 'Font Awesome 5 Free';
+    font-weight: 900;
+    content: '\f102';
+    font-size: 25px;
+    color: #fff;
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    top: -5px;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    margin: auto;
+    text-align: center;
+}
+
+
+
+.panel {
+    position: absolute;
+    top: 65px;
+    left: 0;
+    right: 0;
+    margin: auto;
+    overflow: hidden;
+    /* width: 100%; */
+    width: 100px;
+    display: none;
+    /* background-color: white; */
+    z-index: 100;
+    border-radius: 3px;
+    background-color: #00000048;
+    box-shadow: 0 0px 20px rgba(0, 0, 0, 0.2);
+}
+
+.panel.js-dropdown-menu {
+    width: 120px;
+    display: flex;
+    justify-content: center;
+}
+
+.panel-inner {
+    padding: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.panel_item {
+    width: 100%;
+    display: block;
+    /* margin: 10px 10px; */
+    font-size: 14px;
+}
+
+.panel_item a {
+    width: 100%;
+    color: #0099FF;
+    font-size: 16px;
+    font-weight: 100;
+}
+
+.panel_item a:hover {
+    text-decoration: underline;
+}
+
+#NavAvatarImage {
+    background-size: cover;
+    width: 30px;
+    height: 30px;
+    /*height: auto;*/
+    /* 高さは自動指定 */
+    border-radius: 50%;
+}
+
+
+.MyPageManagement {
+    width: 100%;
+    margin-top: 160px;
+}
+.MyPageManagement div {
+    display: flex;
+    justify-content: center;
+}
+.MyPageManagement div h1 {
+    font-size:20px;
+    margin-left: 6px;
+} 
+.MyPageManagement ul {
+    width: 400px;
+    margin: 0 auto;
+}
+
+.MyPageManagement ul li {
+    margin: 6px 6px 6px 0;
+    width: 400px;
+    box-sizing: border-box;
+    text-align: center;
+    padding: 10px;
+
+
+    display: block;
+    list-style-type: none;
+    border: 2px solid #232D3A;
+    border-radius: 10px;
+}
+
+.MyPageManagement a {
+    color: #252525;
+    text-decoration: none;
+}
+
+.MyPageManagement a:hover {
+    opacity: 0.5;
+    transition: 0.6s;
+}
+
+
+
+
+.wrapper {
+    width: 100%;
+    height: auto;
+    display: grid;
+    place-items: center;
+}
+
+
+
+#userprofile {
+    width: 200px;
+    display: flex;
+    flex-direction: column;
+
+    /* float: left; */
+}
+
+#userprofile p {
+    /* float: left; */
+    margin: 0;
+    word-wrap: break-word;
+}
+
+#userprofile img {
+    width: 100px;
+    height: 100px;
+}
+
+#bought {
+    color: Red;
+}
+
+
+.loading {
+    width: 100vw;
+    height: 100vh;
+    transition: all 1s;
+    background-color: #FFF;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 9999;
+    opacity: 1;
+    visibility: visible;
+}
+
+.loading.is-active {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.loading-animation {
+    width: 100vw;
+    height: 100vh;
+    transition: all 1s;
+    background-color: #fff;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+}
+
+.loading-animation img {
+    width: 500px;
+}
+
+.loading-animation.is-active {
+    opacity: 1;
+    visibility: visible;
+}
+
+
+
+/* modal */
+.modal_custom {
+    display: flex;
+    visibility: hidden;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    z-index: 20;
+    left: 0;
+    top: 0;
+    overflow: auto;
+    background-color: rgb(0,10,16, 0.3);
+    padding-top: 80px;
+}
+.modal_custom::-webkit-scrollbar {
+    display: none;
+}
+
+.modal-content {
+    width: 832px;
+    height: auto;
+    /* margin: 10% auto; */
+    box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 7px 20px 0 rgba(0, 0, 0, 0.17);
+    animation-name: modalopen;
+    animation-duration: 1s;
+}
+
+.modal-header {
+    position: relative;
+    width: 100%;
+    height: auto;
+    overflow: hidden;
+    background: linear-gradient(180deg, rgba(202, 202, 202, 0.70) 0%, rgba(87, 110, 140, 0.35) 63.4%, rgba(94, 121, 156, 0.00) 100%);
+    background-size: cover;
+}
+
+/* movie 横背景画像 */
+.movieBackground {
+    width: 100%;
+    height: auto;
+    position: relative;
+    top: 0;
+    left: 0;
+    z-index: 10;
+}
+
+/* movie 縦ポスター画像 */
+.moviePoster {
+    width: 280px;
+    height: 420px;
+    position: absolute;
+    top: 24px;
+    left: 40px;
+    z-index: 20;
+    border-radius: 4px;
+}
+
+/* modal close button */
+.modalClose {
+    position: absolute;
+    top: 24px;
+    right: 24px;
+    z-index: 30;
+    border-radius: 4px;
+}
+
+.modalClose:hover {
+    cursor: pointer;
+    background-color: rgba(0, 10, 23, .75);
+}
+
+.modal-body {
+    padding: 1.5rem 5rem;
+}
+
+.modal-body h1 {
+    margin: 1rem 0;
+    font-size: 2.25rem;
+}
+
+.modal-body .genreList {
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+}
+
+.modal-body .genreList li , .languageList li {
+    position: relative;
+    font-size: 0.875rem;
+    padding-right: 0.5rem;
+}
+
+.modal-body .genreList li:first-child, .languageList li:first-child {
+    padding-left: 0;
+}
+
+/* separate language with , */
+.modal-body .languageList li:not(:last-child):not(:only-child):after {
+    content: ",";
+    position: absolute;
+    right: 4px;
+    bottom: 0;
+}
+/* separate genre with , */
+.modal-body .genreList li:not(:last-child):not(:only-child):after {
+    content: ",";
+    position: absolute;
+    right: 4px;
+    bottom: 0;
+}
+
+.modal-body .modal_date {
+    font-size: 0.875rem;
+}
+
+.modal-body ul:not(.similar_list, .reviewList) {
+    list-style: none;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+}
+
+.modal-body .reviewContainer {
+    margin: 1.5rem 0;
+}
+
+/* review star */
+.starContainer {
+    position: relative;
+    display: inline-block;
+}
+
+.reviewStars {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.modal_review {
+    font-size: 1rem;
+}
+
+.modal-body .flexContainer {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    gap: 1rem;
+}
+
+.modal-body .modal_function {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    gap: 2rem;
+    margin-bottom: 1.5rem;
+    white-space: nowrap;
+}
+
+.modal-body .modal_function .flexColContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.modal-body .modal_function img {
+    background-color: #0080DE;
+    border-radius: 100%;
+    padding: 0.5rem;
+}
+
+/* .modal-body .modal_function button i {
+    font-size: 1.5rem;
+    background-color: #0080DE;
+    border-radius: 100%;
+    padding: 0.5rem;
+    display: block;
+    min-width: 40px;
+    min-height: 40px;
+} */
+
+.modal-body .modal_function a:hover img, .modal-body .modal_function button:hover img{
+    background-color: rgba(0, 128, 222, 0.75);
+}
+
+.modal-body .modal_function a, button {
+    font-size: 0.5rem;
+    text-decoration: none;
+    background: none;
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+
+.modal-body .video {
+    margin-bottom: 1.5rem;
+    aspect-ratio: 2.35 / 1;
+}
+
+.video iframe {
+    border: solid 0.25rem #ffffff;
+    border-radius: 0.25rem;
+    width: 100%;
+    height: 100%;
+}
+
+.modal-body .overviewContainer {
+    margin-bottom: 1.5rem;
+}
+
+.overviewContainer p {
+    font-size: 1.25rem;
+}
+
+.overviewContainer .overview {
+    font-size: 1rem;
+    padding-top: 0.75rem;
+}
+
+
+.modal-body .moreDetailContainer {
+    margin-bottom: 1.5rem;
+}
+
+.moreDetailContainer.flexColContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: start;
+    gap: 0.75rem;
+}
+
+.moreDetailContainer .tabChanger {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.tabButton {
+    width: 6rem;
+    height: 3rem;
+    border-radius: 4px;
+    border: 2px solid #303D4F;
+    background-color: #232D3A;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.tabButton:hover {
+    background-color: rgb(35, 45, 58, .5);
+}
+
+.tabSelected {
+    background-color: rgb(35, 45, 58, .5);
+}
+
+.tabContent {
+    display: none;
+    width: 100%;
+    padding: 1.75rem;
+    border-radius: 4px;
+    border: 2px solid #303D4F;
+    background-color: #232D3A;
+}
+
+.tabContent * {
+    background-color: #232D3A;
+}
+/* .tabContent p {
+} */
+.tabContent .cast {
+    font-size: 1.5rem;
+    margin-bottom: 0.75rem;
+}
+
+.tabContent .cast_list {
+    height: 16rem;
+    overflow-y: scroll;
+}
+
+.tabContent .castRole {
+    padding: 0.5rem 0;
+}
+/* .castRole p {
+} */
+.castRole p:first-child {
+    color: rgba(255, 255, 255, .5);
+    font-size: 0.875rem;
+    margin-bottom: 0.25rem;
+}
+
+#reviewTab .reviewList{
+    list-style: none;
+    /* height: 16rem; */
+    /* overflow-y: scroll; */
+}
+
+#reviewTab .reviewList li {
+    padding: 0.75rem 0;
+    border-bottom: solid 1px #fff;
+}
+
+.reviewList li .reviewFlexContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 0.75rem;
+}
+
+.reviewer {
+    width: calc(70% - 1rem);
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.reviewer img {
+    width: 40px;
+    border-radius: 100%;
+}
+
+.reviewer div p:first-child {
+    font-size: 1.25rem;
+}
+
+.reviewer div p:last-child {
+    font-size: 0.875rem;
+    color: rgba(255, 255, 255, .5);
+}
+
+.likeStarContainer {
+    width: fit-content;
+    max-width: 30%;
+    white-space: nowrap;
+}
+
+.reviewList li .reviewTitle {
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+
+.reviewList li .reviewContent {
+    font-size: 0.875rem;
+    white-space: pre-wrap;
+    margin-bottom: 0.25rem;
+}
+
+.reviewList li .reviewFunction, .reviewList li .reviewFunctionOthers {
+    text-align: right;
+}
+
+.reviewFunction a {
+    text-decoration: none;
+    color: #0080DE;
+    cursor: pointer;
+}
+
+.reviewFunction a i {
+    /* font-family: 'Sawarabi Mincho', serif; */
+    color: #0080DE;
+}
+.reviewFunction a i::before {
+    /* font-family: "Font Awesome 6 Free"; */
+    color: #0080DE;
+}
+
+.reviewFunctionOthers span {
+    color: #0080DE;
+    cursor: pointer;
+}
+
+.reviewFunctionOthers span i {
+    /* font-family: 'Sawarabi Mincho', serif; */
+    color: #0080DE;
+}
+.reviewFunctionOthers a i::before {
+    /* font-family: "Font Awesome 6 Free"; */
+    color: #0080DE;
+}
+
+#reviewTab button {
+    height: 100%;
+    font-size: 0.75rem;
+    padding: 1.5rem 0 0.5rem 0;
+}
+
+/* .tabContentのdisplay:noneより下に記述 */
+.tabActive {
+    display: block;
+}
+
+.similarMovie {
+    width: fit-content !important;
+}
+
+.modal-body .similar .similar_list li {
+    list-style: none;
+}
+
+.modal-body .similar .similar_list .similarMovie .clickDetail{
+    width: 200px;
+    height: 300px;
+}
+
+@keyframes modalopen {
+    from {
+        opacity: 0
+    }
+
+    to {
+        opacity: 1
+    }
+}
+
+/* レビュー投稿, 編集 */
+.reviewPostContainer {
+    width: 100%;
+    height: 100%;
+    padding-top: 72px;
+    display: grid;
+    place-items: center;
+}
+
+.review_border {
+    width: 80%;
+    height: auto;
+    padding: 4rem;
+    margin: 2rem;
+    border: 2px solid #232D3A;
+    border-radius: 8px;
+    box-shadow: 2px 2px 8px 0 rgba(255, 255, 255, 0.25);
+    display: grid;
+    grid-template-areas:
+    "image info"
+    "image form";
+    grid-template-columns: 40% 60%;
+    gap: 2rem 1rem;
+}
+
+.review_border .item_image {
+    grid-area: image;
+    width: 80%;
+}
+
+.movieInfo {
+    grid-area: info;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: start;
+    gap: 0.75rem;
+}
+
+.movieInfo .itemTitle {
+    font-size: 2.25rem;
+}
+
+.movieInfo .movieInfoItem {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.movieInfo .genreList, .movieInfo .languageList {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    flex-wrap: wrap;
+    list-style: none;
+}
+
+.movieInfo .genreList li , .languageList li {
+    position: relative;
+    font-size: 0.875rem;
+    padding-right: 0.5rem;
+}
+
+.movieInfo .genreList li:first-child, .movieInfo .languageList li:first-child {
+    padding-left: 0;
+}
+
+/* separate genre with , */
+.movieInfo .genreList li:not(:last-child):not(:only-child):after {
+    content: ",";
+    position: absolute;
+    right: 4px;
+    bottom: 0;
+}
+/* separate language with , */
+.movieInfo .languageList li:not(:last-child):not(:only-child):after {
+    content: ",";
+    position: absolute;
+    right: 4px;
+    bottom: 0;
+}
+
+.movieInfo .itemReleaseDate {
+    font-size: 0.875rem;
+    margin-bottom: 0.75rem;
+}
+
+.reviewItem {
+    grid-area: form;
+}
+
+.reviewItem form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
+    gap: 1rem;
+}
+
+.rate-form p {
+    margin-bottom: 0.5rem;
+}
+
+/* star */
+.rate-form input[type="radio"] {
+    display: none;
+}
+
+.rate-form label {
+    font-size: 24px;
+    color: #FFD700;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+input[type="radio"]:checked ~ label {
+    color: #FFD700;
+}
+
+input[type="radio"]:checked ~ input[type="radio"] + label {
+    color: #ccc;
+}
+
+form .reviewTitle {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+form .reviewContent {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+#inputTitleWrap, #inputContentWrap {
+    position: relative;
+}
+#inputTitleWrap::after, #inputContentWrap::after {
+    content: attr(data-length);
+    position: absolute;
+    bottom: 8px;
+    right: 8px;
+    color: rgba(0, 0, 0, 0.5);
+    font-size: 0.875rem;
+}
+
+#review_title {
+    padding-right: 3.25rem;
+}
+#review_content {
+    padding-bottom: 1.25rem;
+}
+
+.form-control {
+    width: 100%;
+    padding: 0.5rem;
+    background-color: #fff;
+    color: #000a17;
+    border: solid 1px #232D3A;
+    outline: none;
+    border-radius: 8px;
+}
+.form-control::placeholder {
+    font-size: 0.875rem;
+}
+
+.form-control#review_spoiler {
+    width: fit-content;
+}
+.form-control#review_publish {
+    width: fit-content;
+}
+
+.reviewPostButton {
+    padding: 1rem 2.5rem;
+    background-color: #0080DE;
+    border-radius: 3rem;
+    font-size: 0.875rem;
+    font-weight: bold;
+}
+/* end review/post */
+
+.reviewers {
+    padding: 6px;
+    border: none;
+}
+.review_detail img{
+    border-radius: 4px;
+}
+.review_detail a {
+    text-decoration: none;
+}
+.review_detail a img {
+    border-radius: 5px;
+}
+.review_detail img:hover {
+    opacity: 0.8;
+    color: white;
+    transition: 0.3s;
+    cursor: pointer;
+}
+/* トレーラー */
+.youtube {
+    aspect-ratio: 2.35 / 1;
+    margin-top: 36px;
+}
+.youtube iframe {
+    width: 100%;
+    height: 100%;
+    zoom: 20%;
+    margin: 0 auto;
+}
+/* 区分け */
+.title_box {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    align-items: flex-end;
+    gap: 0.75rem;
+}
+.title_box h2{
+    font-size: 1.25rem;
+    margin-left: 0.5rem;
+}
+.title_box a{
+    font-size: 1rem;
+    text-decoration:none;
+    color:#ffffff7a;
+}
+.title_box p{
+    font-size: 1rem;
+    color: #ffffff7a;
+}
+.genre {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 80px;
+}
+.scroll {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 80px;
+}
+.search {
+    display: flex;
+    flex-direction: row;
+    margin-top: 18px;
+}
+.search_result {
+    padding-top: 160px;
+    margin: 0 0.5rem;
+}
+.search_result h1{
+    font-size:20px;
+    margin-left: 6px;
+}
+.mylist {
+    display: flex;
+    flex-direction: row;
+    margin-bottom:80px;
+}
+.mylist a  {
+    border-radius: 5px;
+    padding: 6px;
+}
+.mylist a img {
+    border-radius: 5px;
+}
+/* サイドバー */
+.sidebar {
+    margin-top: 72px;
+    position: fixed;
+    width: 256px;
+    height: 100%;
+    background-color: #232D3A;
+    z-index: 10;
+    visibility: hidden;
+}
+.sidebar ul {
+    width: 256px;
+    height: 90%;
+    overflow-y: scroll;
+    margin-bottom: 0;
+}
+.sidebar ul li {
+    background-color: #232D3A;
+    padding-top: 1.1rem;
+    padding-bottom: 1.1rem;
+    padding-left: 3.1rem;
+    list-style: none;
+}
+.sidebar ul li i {
+    background-color: #232D3A;
+}
+.sidebar ul li a {
+    text-decoration: none;
+}
+.sidebar_genre:hover {
+    opacity: 0.7;
+    transition: 0.8s;
+}
+.side_top a {
+    font-size: 20px;
+}
+.side_top a i {
+    background-color: rgb(70, 84, 102);
+    margin-right: 0.5rem;
+}
+
+/* swiper */
+.swiper {
+    width: 100%;
+    margin-bottom: 60px;
+}
+.swiper-wrapper {
+    width: 100%;
+    /* width: 500px !important;
+    height: 300px; */
+}
+
+.swiper-slide {
+    /* width: 100%;
+    height: 100%; */
+    
+    /* color: #ffffff;
+    text-align: center;
+    line-height: 300px;  */
+    width: auto;
+}
+.posters {
+    /* width: 320px !important; */
+}
+.poster{
+    transition: 0.3s;
+    padding: 6px;
+}
+.poster img {
+    border-radius: 4px;
+    cursor: pointer;
+}
+.poster img:hover {
+    opacity: 0.8;
+    color: white;
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+.swiper-button-next, .swiper-button-prev{
+    width: 50px;
+    height: 450px;
+    top: 6%;
+    color: #fff;
+    background-color: rgba(10, 10, 10, 0.3);
+}
+
+/* modal img 300px * 200px */
+.modal-content .swiper-button-next, .modal-content .swiper-button-prev{
+    width: 50px;
+    height: 300px;
+    top: 22px;
+    color: #fff;
+    background-color: rgba(10, 10, 10, 0.3);
+}
+
+.swiper-button-next:hover, .swiper-button-prev:hover{
+    background-color: rgba(10, 10, 10, 0.7);
+    transition: all 0.5s;
+}
+.swiper-button-prev{
+    left: 0%;
+}
+.swiper-button-next{
+    right: 0%;
+}
+
+
+.swiper-pagination{
+    background-color: transparent;
+}
+.swiper-pagination-bullet{ 
+    background-color: #fff;
+
+}
+
+/* レビューリスト */
+.ordersection_list {
+    padding-top: 160px;
+    margin: 0 0.5rem;
+}
+.title_box_list {
+    width: 100%;
+    margin-left: 0.5em;
+    display: flex;
+    justify-content: start;
+    align-items: flex-end;
+    gap: 0.75rem;
+}
+.title_box_list h1 {
+    font-size: 20px;
+}
+.title_box_list p {
+    font-size: 1rem;
+    color: #ffffff7a;
+}
+.container_list {
+    display: flex;
+    justify-content: start;
+    align-items: start;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+}
+.review_detail_list {
+    max-width: 300px;
+    margin: 0.5rem;
+}
+.review_detail_list * {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+.review_detail_list img {
+    border-radius: 4px;
+}
+.review_detail_list .rate #star {
+    color: #FFD700;
+}
+.review_edit a{
+    color: #fff;
+    text-decoration: none;
+}
+.review_edit a:hover{
+    color: #ffffff7a;
+    text-decoration: none;
+}
+
+@media screen and (max-width: 479px) {
+    header .navTop {
+        gap: 1rem;
+    }
+    header .navFunction {
+        padding-right: 1rem;
+        gap: 0.75rem;
+    }
+    .navFunction .search_form {
+        display: none;
+    }
+    .navFunction .search_formarea button {
+        background: none;
+    }
+    .navFunction .search_formarea button i {
+        background: none;
+        font-size: 1.5rem;
+    }
+
+    /* search modal */
+    .searchModalSp {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(21, 23, 25, 0.7);
+        z-index: 100;
+    }
+    .headerModalContent {
+        width: 100%;
+        height: 72px;
+        background-color: rgba(21, 23, 25, 0.3);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .headerModalContent .search_formarea {
+        width: 100%;
+        height: 40px;
+        margin-left: 1rem;
+        border-radius: 10px;
+    }
+    .headerModalContent .search_formarea .search_form {
+        width: 100%;
+        height: 40px;
+        padding: 0 0.75rem;
+        border: none;
+        border-radius: 10px;
+        color: #000a17;
+        background-color: #fff;
+    }
+    .headerModalContent .search_formarea button {
+        display: none;
+    }
+    .headerModalContent .closeButton {
+        width: 36px;
+        height: 36px;
+        min-width: 36px;
+        background-color: #000a17;
+        margin: 0 1rem;
+        font-size: 2em;
+        text-align: center;
+        border-radius: 8px;
+        cursor: pointer;
+    }
+
+    /* 映画詳細modal */
+    .modal_custom {
+        padding: 0;
+    }
+    .modal-content {
+        width: 100vw;
+        height: 100vh;
+    }
+    /* .modal-header {
+    } */
+    .modalClose{
+        width: 36px;
+        height: 36px;
+    }
+    .moviePoster {
+        width: 120px;
+        height: 180px;
+    }
+    .modal-body {
+        padding: 1.5rem 2rem;
+    }
+    .modal-body h1 {
+        margin: 0 0 0.5rem 0;
+        font-size: 1.25rem;
+    }
+    .modal-body .genreList {
+        margin-bottom: 0.5rem;
+    }
+    .modal-body .reviewContainer {
+        margin: 1rem 0;
+    }
+    /* .reviewContainer .starContainer {
+    } */
+    .starContainer .backReviewStars li svg {
+        width: 1.5rem;
+        height: 1.5rem;
+    }
+    .starContainer .reviewStars li svg {
+        width: 1.5rem;
+        height: 1.5rem;
+    }
+    .modal-body .modal_function {
+        justify-content: space-between;
+        gap: 0;
+    }
+    .modal-body .video {
+        display: grid;
+        place-items: center;
+    }
+    .overviewContainer p {
+        font-size: 1rem;
+    }
+    .overviewContainer .overview {
+        font-size: 0.875rem;
+    }
+    .moreDetailContainer.flexColContainer{
+        gap: 0.5rem;
+    }
+    .moreDetailContainer .tabChanger {
+        gap: 0.5rem;
+    }
+    #reviewTab .reviewList li {
+        padding: 0.5rem 0;
+    }
+    .reviewer div {
+        width: calc(100% - 40px - 0.75rem);
+    }
+    .reviewer div p:first-child {
+        /* position: relative; */
+        font-size: 1rem;
+        white-space: nowrap;
+        overflow: hidden;
+        /* text-overflow: ellipsis; */
+    }
+    .reviewer div p:last-child {
+        font-size: 0.75rem;
+    }
+    .likeStarContainer img {
+        width: 16px;
+        height: 16px;
+    }
+    .modal-body .similar .similar_list .similarMovie .clickDetail {
+        width: 120px;
+        height: 180px;
+    }
+    .modal-content .swiper {
+        margin-bottom: 2rem;
+    }
+    .modal-content .swiper-button-next, .modal-content .swiper-button-prev {
+        width: 32px;
+        height: 180px;
+    }
+    .modal-content .swiper-button-prev::after, .modal-content .swiper-button-next::after {
+        font-size: 1.75rem;
+    }
+
+    /* レビュー投稿 */
+    .review_border {
+        width: 100%;
+        height: auto;
+        padding: 2rem 1rem;
+        margin: 0;
+        border: none;
+        border-radius: 0;
+        box-shadow: none;
+        grid-template-areas:
+        "image info"
+        "form form";
+        grid-template-columns: calc(50% - 1rem) 50%;
+        gap: 1rem;
+    }
+    .review_border .item_image {
+        width: 100%;
+    }
+    .movieInfo .itemTitle {
+        font-size: 1.25rem;
+    }
+    /* .movieInfo .itemReleaseDate {
+    } */
+    /* .reviewItem {
+    } */
+    .reviewItem .reviewPostButton {
+        align-self: center;
+    }
+
+    /* 映画一覧sp */
+    .youtube {
+        width:390px
+    }
+    .swiper {
+        margin-bottom: 0;
+    }
+    .swiper {
+        margin-bottom: 24px;
+    }
+    .title_box h2 {
+        font-size: 12px;
+    }
+    .title_box a {
+        font-size:12px;
+    }
+    .poster {
+        width: 120px;
+        height:180px;
+    }
+    .poster img {
+        width: 120px;
+        height: 180px;
+    }
+
+    /* マイリストsp */
+    .search_result {
+        padding-top: 88px;
+    }
+    .search_result h1 {
+        font-size: 12px;
+    }
+    .title_box h1 {
+        font-size: 12px;
+    }
+    .title_box p {
+        font-size: 12px;
+    }
+    .scroll {
+        justify-content: center;
+        width: 100%;
+    }
+    .review_detail img {
+        width: 100%;
+        height: auto;
+    }
+    /* レビューリストsp */
+    .title_box_list {
+        display: flex;
+        margin-top: 32px;
+    }
+    .title_box_list h1{
+        font-size: 12px;
+    }
+    .title_box_list p {
+        font-size: 12px;
+    }
+    .reviewers_list {
+        margin: 0 auto;
+    }
+    .ordersection_list {
+        padding-top: 72px;
+    }
+    /* アカウント管理 */
+    .MyPageManagement div {
+        margin-top:32px;
+    }
+    .MyPageManagement div h1{
+        font-size: 20px;
+    }
+    .MyPageManagement p{
+        font-size: 20px;
+    }
+    .MyPageManagement {
+        margin: 0;
+        padding-top: 54px;
+    }
+    .MyPageManagement ul {
+        width: 100%;
+        margin: 0;
+    }
+    .MyPageManagement ul li {
+        width: 390px;
+    }
+}
