@@ -711,12 +711,7 @@ def review(request):
     return JsonResponse(d)
 
 
-
-
-
-#エラー
-
-
+#例外処理
 def error_400page(request, exception): # 以下追記箇所
     return render(request, 'app/errors/404.html', status=400)
 
@@ -728,7 +723,3 @@ def error_404page(request, exception): # 以下追記箇所
 
 def error_500page(request, exception): # 以下追記箇所
     return render(request, 'app/errors/500.html', status=500)
-
-
-# def page_not_found(request, exception):
-#     return render(request, 'your_404_filename.html')
