@@ -38,10 +38,10 @@ tags: ""
 映画情報の検索・表示、レビューが可能なWebアプリケーションです。既存の配信サービス U-NEXTやNETFLIXでは作品を星5段階でしか評価できません。しかし、本サービスでは、5段階評価・投稿タイトル・投稿本文の3つの機能によって映画に対してのレビューを投稿することができます。これにより、作品について思いを発信したいユーザー側と、作品についてのユーザーの声を聴きたいクリエイター側の「共感・参考」といったニーズを満たすことができます。タイトルは30文字、本文は32万文字までレビューを投稿することができます。本サービスを通して、運命の映画を見つけてみませんか？
 
 ## デモ(図解)
-![sidekick_WCs3zlPKWa.jpg](https://boostnote.io/api/teams/ZiDFKbzPj/files/ab243af48245d2903b42aa593121f5068f1663af8ce00764355ff7538daa9325-sidekick_WCs3zlPKWa.jpg)
-
-
-![image.png](https://boostnote.io/api/teams/ZiDFKbzPj/files/1f008d50856d6359cec38253e19defa04a5c6a282967ccb3ea6f3763f0676bd8-image.png)
+<p align="center">
+  <img src="docs/Movie.jpg" alt="Movie: full app" width=810 />
+  <img src="docs/Movie-Review.png" alt="Movie: full app" width=810 />
+</p> 
 
 ## 環境
 
